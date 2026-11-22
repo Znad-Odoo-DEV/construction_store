@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_stock_location_form_construction" model="ir.ui.view">
+        <field name="name">stock.location.form.construction</field>
+        <field name="model">stock.location</field>
+        <field name="inherit_id" ref="stock.view_location_form"/>
+        <field name="arch" type="xml">
+            <field name="usage" position="after">
+                <field name="construction_project_id" options="{'no_create': True}"/>
+                <field name="construction_storekeeper_id" options="{'no_create': True}"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_stock_location_list_construction" model="ir.ui.view">
+        <field name="name">stock.location.list.construction</field>
+        <field name="model">stock.location</field>
+        <field name="inherit_id" ref="stock.view_location_tree2"/>
+        <field name="arch" type="xml">
+            <field name="usage" position="after">
+                <field name="construction_project_id" optional="show"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_stock_location_search_construction" model="ir.ui.view">
+        <field name="name">stock.location.search.construction</field>
+        <field name="model">stock.location</field>
+        <field name="inherit_id" ref="stock.view_location_search"/>
+        <field name="arch" type="xml">
+            <field name="warehouse_id" position="after">
+                <field name="construction_project_id"/>
+            </field>
+            <xpath expr="//group" position="inside">
+                <filter name="construction_group_project" string="Project"
+                        context="{'group_by': 'construction_project_id'}"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
